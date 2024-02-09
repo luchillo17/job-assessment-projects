@@ -1,0 +1,24 @@
+{
+  "name": "insurance-policy-manager",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/insurance-policy-manager/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "insurance-policy-manager:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "insurance-policy-manager:build:development"
+        },
+        "production": {
+          "buildTarget": "insurance-policy-manager:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
