@@ -1,26 +1,74 @@
-import { ExpressAuth } from '@auth/express';
-import Credentials from '@auth/express/providers/credentials';
-// import { MongoDBAdapter } from '@auth/mongodb-adapter';
+import bcrypt from 'bcrypt';
+import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
 
-// import { mongoClientPromise } from './db.config';
+import { mongoClientPromise } from './db.config';
+import { User } from '../models/user.model';
+import { MongoServerError } from 'mongodb';
 
-export const authMiddleware = ExpressAuth({
-  providers: [
-    Credentials({
-      name: 'Insurance Policy Manager',
-      credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'JSmith' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials, request) {
-        console.log('Credentials: ', credentials);
-        console.log('Request: ', request);
+const signupStrategy = new LocalStrategy(async function verify(
+  username,
+  password,
+  done
+) {
+  try {
+    const client = await mongoClientPromise;
 
-        const response = await fetch(request);
-        if (!response.ok) return null;
-        return (await response.json()) ?? null;
-      },
-    }),
-  ],
-  // adapter: MongoDBAdapter(mongoClientPromise),
+    const user = await client
+      .db()
+      .collection<User>('User')
+      .insertOne({ username, password: await bcrypt.hash(password, 10) }, {});
+
+    if (user.acknowledged) {
+      return done(null, { username });
+    } else {
+      return done(null, false);
+    }
+  } catch (error) {
+    if (error instanceof MongoServerError) {
+      return done(null, false);
+    }
+
+    return done(error, false);
+  }
+});
+
+const localStrategy = new LocalStrategy(async function verify(
+  username,
+  password,
+  done
+) {
+  try {
+    const client = await mongoClientPromise;
+
+    const user = await client
+      .db()
+      .collection<User>('User')
+      .findOne({ username });
+
+    if (!user) {
+      return done(null, false);
+    }
+
+    const isSamePassword = await bcrypt.compare(password, user.password);
+
+    if (!isSamePassword) {
+      return done(null, false);
+    }
+
+    return done(null, { username });
+  } catch (error) {
+    return done(error, false);
+  }
+});
+
+passport.use('signup', signupStrategy);
+passport.use(localStrategy);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
 });

@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
+import { applyUserConstraints } from '../models/user.model';
+
 const options = {};
 
 let clientPromise: Promise<MongoClient>;
@@ -19,6 +21,7 @@ if (process.env.NODE_ENV === 'development') {
   );
 
   clientPromise = global._mongoClientPromise;
+  clientPromise.then((client) => applyUserConstraints(client));
 } else {
   // In production mode, it's best to not use a global variable.
 
@@ -28,6 +31,7 @@ if (process.env.NODE_ENV === 'development') {
   clientPromise = memoryServerPromise.then((memoryServer) =>
     new MongoClient(memoryServer.getUri(), options).connect()
   );
+  clientPromise.then((client) => applyUserConstraints(client));
 }
 
 export const mongoMemoryServerPromise = memoryServerPromise;
