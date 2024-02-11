@@ -1,0 +1,52 @@
+@username=smith
+@password=123456
+
+POST http://localhost:4200/api/auth/signup
+content-type: application/json
+
+{
+    "username": "{{username}}",
+    "password": "{{password}}"
+}
+
+###
+
+POST http://localhost:4200/api/auth/signin
+content-type: application/json
+
+{
+    "username": "{{username}}",
+    "password": "{{password}}"
+}
+
+###
+
+http://localhost:4200/api/insurance-policy
+
+###
+
+POST http://localhost:4200/api/insurance-policy
+content-type: application/json
+
+{
+    "policyId": "9875321",
+    "type": "auto",
+    "holder": "{{username}}",
+    "premium": 5000
+}
+
+###
+
+http://localhost:4200/api/insurance-policy/65c95748656f637899b5ea15
+
+###
+
+PUT http://localhost:4200/api/insurance-policy/65c95748656f637899b5ea15
+content-type: application/json
+
+{
+    "policyId": "9875321",
+    "type": "car",
+    "holder": "{{username}}",
+    "premium": 15000
+}

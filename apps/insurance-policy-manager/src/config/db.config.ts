@@ -8,6 +8,13 @@ const options = {};
 let clientPromise: Promise<MongoClient>;
 let memoryServerPromise: Promise<MongoMemoryServer>;
 
+declare global {
+  // eslint-disable-next-line no-var
+  var _mongoMemoryServerPromise: Promise<MongoMemoryServer>;
+  // eslint-disable-next-line no-var
+  var _mongoClientPromise: Promise<MongoClient>;
+}
+
 if (process.env.NODE_ENV === 'development') {
   // In development mode, use a global variable so that the value
   // is preserved across module reloads caused by HMR (Hot Module Replacement).

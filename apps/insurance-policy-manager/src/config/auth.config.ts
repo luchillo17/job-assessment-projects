@@ -5,6 +5,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { mongoClientPromise } from './db.config';
 import { User } from '../models/user.model';
 import { MongoServerError } from 'mongodb';
+import { RequestHandler } from 'express';
 
 const signupStrategy = new LocalStrategy(async function verify(
   username,
@@ -69,6 +70,14 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser((user, done) => {
+passport.deserializeUser((user: User, done) => {
   done(null, user);
 });
+
+export const isAuthenticatedMiddleware: RequestHandler = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  res.sendStatus(401);
+};
