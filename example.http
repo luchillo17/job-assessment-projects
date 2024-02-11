@@ -37,11 +37,14 @@ content-type: application/json
 
 ###
 
-http://localhost:4200/api/insurance-policy/65c95748656f637899b5ea15
+@policy_db_id=65c959897ca8dae9c642b97c
+
+###
+http://localhost:4200/api/insurance-policy/{{policy_db_id}}
 
 ###
 
-PUT http://localhost:4200/api/insurance-policy/65c95748656f637899b5ea15
+PUT http://localhost:4200/api/insurance-policy/{{policy_db_id}}
 content-type: application/json
 
 {

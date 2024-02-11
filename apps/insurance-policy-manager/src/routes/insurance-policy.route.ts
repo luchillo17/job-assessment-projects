@@ -1,4 +1,5 @@
 import express from 'express';
+import { ObjectId } from 'mongodb';
 
 import { isAuthenticatedMiddleware } from '../config/auth.config';
 import { mongoClientPromise } from '../config/db.config';
@@ -6,7 +7,6 @@ import {
   InsurancePolicy,
   insurancePolicySchema,
 } from '../models/insurance-policy.model';
-import { ObjectId } from 'mongodb';
 
 const router = express.Router();
 
