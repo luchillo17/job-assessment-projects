@@ -56,6 +56,12 @@ dependencies:
   passport-local:
     specifier: ^1.0.0
     version: 1.0.0
+  react:
+    specifier: 18.2.0
+    version: 18.2.0
+  react-dom:
+    specifier: 18.2.0
+    version: 18.2.0(react@18.2.0)
   tslib:
     specifier: ^2.3.0
     version: 2.6.2
@@ -82,6 +88,9 @@ devDependencies:
   '@nx/node':
     specifier: 18.0.3
     version: 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(ts-node@10.9.1)(typescript@5.3.3)
+  '@nx/react':
+    specifier: 18.0.3
+    version: 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3)
   '@nx/web':
     specifier: 18.0.3
     version: 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3)
@@ -2075,6 +2084,24 @@ packages:
       - verdaccio
     dev: true
 
+  /@nrwl/react@18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3):
+    resolution: {integrity: sha512-eYdQlFL6F6SJQxEIbKCrIVPgzlQANSggZX6K1Vwr3tU9XfvLCnJbCBIh4v42FYqDN68JQ7R2rD5bdCjMy/JtgQ==}
+    dependencies:
+      '@nx/react': 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3)
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - debug
+      - js-yaml
+      - nx
+      - supports-color
+      - typescript
+      - verdaccio
+    dev: true
+
   /@nrwl/tao@18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107):
     resolution: {integrity: sha512-9EIIkjvaXs7JM0shhZAQIblV3ym+wZyqxZ9nYc39OwPkII2xXtGhWPhd7SRj+If6lbVNpelIc/Xg5DpTMgu16g==}
     hasBin: true
@@ -2469,6 +2496,33 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@nx/react@18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3):
+    resolution: {integrity: sha512-KuK+I90wpnmpVULMZtxj5z+lOnY9pCY8xVAdo1Y4NqLBJ4xRG9KpgS38wetfwNIuATjyxv8gIqrqvnAhDqk0PA==}
+    dependencies:
+      '@nrwl/react': 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3)
+      '@nx/devkit': 18.0.3(nx@18.0.3)
+      '@nx/eslint': 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)
+      '@nx/js': 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3)
+      '@nx/web': 18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3)
+      '@phenomnomnominal/tsquery': 5.0.1(typescript@5.3.3)
+      '@svgr/webpack': 8.1.0(typescript@5.3.3)
+      chalk: 4.1.2
+      minimatch: 9.0.3
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - debug
+      - js-yaml
+      - nx
+      - supports-color
+      - typescript
+      - verdaccio
+    dev: true
 
   /@nx/web@18.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.107)(@types/node@18.16.20)(nx@18.0.3)(typescript@5.3.3):
     resolution: {integrity: sha512-2egsocXzEaaN/9xBl5vFU1YzplcIiv8isVpTU0aJJ9UkIRIXYgNnbpdD2qA7SoxPmOPM+5IQuEYn1cFWGLwgxA==}
@@ -6521,7 +6575,6 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: true
 
   /js-yaml@3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
@@ -6762,6 +6815,13 @@ packages:
       chalk: 4.1.2
       is-unicode-supported: 0.1.0
     dev: true
+
+  /loose-envify@1.4.0:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
+    dependencies:
+      js-tokens: 4.0.0
+    dev: false
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -8103,6 +8163,16 @@ packages:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
+  /react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.2.0
+      scheduler: 0.23.0
+    dev: false
+
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
@@ -8111,6 +8181,13 @@ packages:
     resolution: {integrity: sha512-PgidR3wST3dDYKr6b4pJoqQFpPGNKDSCDx4cZoshjXipw3LzO7mG1My2pwEzz2JVkF+inx3xRpDeQLFQGH/hsQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react@18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -8331,6 +8408,12 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /schema-utils@3.3.0:
     resolution: {integrity: sha512-pN/yOAvcC+5rQ5nERGuwrjLlYvLTbCibnZ1I7B1LaiAz9BRBlE9GMgE/eqV30P7aJQUf7Ddimy/RsbYO/GrVGg==}

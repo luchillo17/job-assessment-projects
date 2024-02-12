@@ -37,7 +37,7 @@ content-type: application/json
 
 ###
 
-@policy_db_id=65c959897ca8dae9c642b97c
+@policy_db_id=65ca9230795cee6fffbfda48
 
 ###
 http://localhost:4200/api/insurance-policy/{{policy_db_id}}
@@ -53,3 +53,7 @@ content-type: application/json
     "holder": "{{username}}",
     "premium": 15000
 }
+
+###
+
+DELETE http://localhost:4200/api/insurance-policy/{{policy_db_id}}
