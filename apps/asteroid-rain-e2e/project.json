@@ -1,0 +1,8 @@
+{
+  "name": "asteroid-rain-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/asteroid-rain-e2e/src",
+  "targets": {},
+  "implicitDependencies": ["asteroid-rain"]
+}

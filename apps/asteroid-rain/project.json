@@ -1,0 +1,8 @@
+{
+  "name": "asteroid-rain",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/asteroid-rain/src",
+  "projectType": "application",
+  "targets": {},
+  "tags": ["game", "react", "vite", "vitest", "phaser"]
+}
