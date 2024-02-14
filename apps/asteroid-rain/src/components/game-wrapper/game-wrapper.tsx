@@ -1,14 +1,18 @@
-import styles from './game-wrapper.module.scss';
+import Box from '@mui/material/Box';
+import { useEffect } from 'react';
+import { gameConfig } from '../game/game';
 
 /* eslint-disable-next-line */
 export interface GameWrapperProps {}
 
 export function GameWrapper(props: GameWrapperProps) {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to GameWrapper!</h1>
-    </div>
-  );
+  useEffect(() => {
+    const game = new Phaser.Game(gameConfig);
+    return () => {
+      game.destroy(true);
+    };
+  }, []);
+  return <Box id="asteroid-game" sx={{ flexGrow: 1 }}></Box>;
 }
 
 export default GameWrapper;

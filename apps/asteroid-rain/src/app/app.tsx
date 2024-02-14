@@ -1,18 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-import Button from '@mui/material/Button';
-
-import NxWelcome from './nx-welcome';
 import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+
 import GameWrapper from '../components/game-wrapper/game-wrapper';
 
 export function App() {
   return (
-    <>
+    <Stack height="100%">
       <AppBar position="static">
         <Container>
           <Toolbar disableGutters>
@@ -23,8 +20,14 @@ export function App() {
         </Container>
       </AppBar>
 
-      <Container component="main">
-        <Stack spacing={3} py={3}>
+      <Container component="main" sx={{ flexGrow: 1 }}>
+        <Stack spacing={3} py={3} height="100%">
+          <Typography variant="h1">Asteroid Rain</Typography>
+
+          <Typography variant="subtitle1">
+            by Carlos Esteban Lopez Jaramillo
+          </Typography>
+
           <Typography>
             Asteroid Rain is a little game made in Phaser where you control a
             spaceship to avoid asteroids.
@@ -39,7 +42,7 @@ export function App() {
           <GameWrapper />
         </Stack>
       </Container>
-    </>
+    </Stack>
   );
 }
 
