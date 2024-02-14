@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { Math } from 'phaser';
+import { GameOverScene } from './game-over';
+import { MenuScene } from './menu';
 
 const width = 800;
 const height = 600;
@@ -10,13 +12,17 @@ const skyKey = 'sky';
 const shipTrailKey = 'trail';
 const asteroidKey = 'asteroid';
 
-class TestScene extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
   points = 0;
 
   ship: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
   asteroidParticles: Phaser.GameObjects.Particles.ParticleEmitter;
   cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
   asteroidGroup: Phaser.Physics.Arcade.Group;
+
+  constructor() {
+    super(GameScene.name);
+  }
 
   preload() {
     this.load.setBaseURL('https://labs.phaser.io');
@@ -59,9 +65,7 @@ class TestScene extends Phaser.Scene {
       this.ship,
       this.asteroidGroup,
       (ship, asteroid) => {
-        console.log('Game Over, Score: ', this.points);
-
-        this.game.pause();
+        this.scene.start(GameOverScene.name, { score: this.points });
       }
     );
 
@@ -86,7 +90,6 @@ class TestScene extends Phaser.Scene {
         this.time.delayedCall(10e3, () => {
           if (singleAsteroid.active) {
             this.points++;
-            console.log('Add point;');
           }
 
           singleAsteroid.destroy();
@@ -122,11 +125,8 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
   width,
   height,
   parent: 'asteroid-game',
-  scene: TestScene,
+  scene: [MenuScene, GameScene, GameOverScene],
   physics: {
     default: 'arcade',
-    arcade: {
-      debug: true,
-    },
   },
 };
