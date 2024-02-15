@@ -1,5 +1,5 @@
-import Phaser from 'phaser';
-import { Math } from 'phaser';
+import Phaser, { Math } from 'phaser';
+
 import { GameOverScene } from './game-over';
 import { MenuScene } from './menu';
 
@@ -140,3 +140,42 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
     default: 'arcade',
   },
 };
+
+if (import.meta.vitest) {
+  // add tests related to your file here
+  // For more information please visit the Vitest docs site here: https://vitest.dev/guide/in-source.html
+
+  const {
+    describe,
+    it,
+    expect,
+    beforeEach,
+    vi: { waitFor },
+  } = import.meta.vitest;
+
+  describe('Game', () => {
+    let game: Phaser.Game;
+
+    beforeEach(async () => {
+      game = new Phaser.Game({
+        type: Phaser.HEADLESS,
+        parent: 'asteroid-game',
+        scene: [MenuScene, GameScene, GameOverScene],
+        physics: {
+          default: 'arcade',
+        },
+      });
+
+      await waitFor(() => {
+        if (!game.isBooted) {
+          throw new Error('Not booted');
+        }
+      });
+    });
+
+    it('should create game', () => {
+      expect(game).toBeInstanceOf(Phaser.Game);
+      expect(game.isBooted).toBeTruthy();
+    });
+  });
+}

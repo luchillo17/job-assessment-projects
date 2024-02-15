@@ -1,6 +1,6 @@
-import { vi } from 'vitest';
-import { constants } from './constants';
 import Phaser from 'phaser';
+
+import { constants } from './constants';
 
 export class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -39,6 +39,7 @@ if (import.meta.vitest) {
     beforeEach,
     vi: { waitFor },
   } = import.meta.vitest;
+
   describe('GameOverScene', () => {
     let game: Phaser.Game;
 
@@ -46,7 +47,7 @@ if (import.meta.vitest) {
       game = new Phaser.Game({
         type: Phaser.HEADLESS,
         parent: 'asteroid-game',
-        scene: [GameOverScene],
+        scene: GameOverScene,
         physics: {
           default: 'arcade',
         },
