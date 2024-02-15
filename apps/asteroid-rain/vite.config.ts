@@ -36,6 +36,7 @@ export default defineConfig({
     'import.meta.vitest': undefined,
   },
   test: {
+    setupFiles: ['./vitest.setup.ts'],
     globals: true,
     cache: {
       dir: '../../node_modules/.vitest',

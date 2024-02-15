@@ -14,6 +14,7 @@ const asteroidKey = 'asteroid';
 
 class GameScene extends Phaser.Scene {
   points = 0;
+  pointText: Phaser.GameObjects.Text;
 
   ship: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
   asteroidParticles: Phaser.GameObjects.Particles.ParticleEmitter;
@@ -35,6 +36,7 @@ class GameScene extends Phaser.Scene {
 
   create() {
     // #region Background & inputs
+    this.points = 0;
     this.add.tileSprite(width / 2, height / 2, width, height, skyKey);
 
     this.cursorKeys =
@@ -59,6 +61,13 @@ class GameScene extends Phaser.Scene {
     // #endregion
 
     // #region Asteroid rain
+    this.pointText = this.add
+      .text(width - 10, 10, `Score: ${this.points}`, {
+        fontSize: '32px',
+        color: '#fff',
+      })
+      .setOrigin(1, 0);
+
     this.asteroidGroup = this.physics.add.group();
 
     this.physics.add.collider(
@@ -90,6 +99,7 @@ class GameScene extends Phaser.Scene {
         this.time.delayedCall(10e3, () => {
           if (singleAsteroid.active) {
             this.points++;
+            this.pointText.setText(`Score: ${this.points}`);
           }
 
           singleAsteroid.destroy();

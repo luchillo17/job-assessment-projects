@@ -64,8 +64,8 @@ if (import.meta.vitest) {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-    expect(getByText(/Welcome asteroid-rain/gi)).toBeTruthy();
+  it('should have Asteroid Rain as title', () => {
+    const { getAllByText } = render(<App />);
+    expect(getAllByText('Asteroid Rain')[0]).toBeTruthy();
   });
 }
