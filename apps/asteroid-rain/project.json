@@ -3,6 +3,18 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/asteroid-rain/src",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "configFile": "apps/asteroid-rain/vite.config.ts"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
+      }
+    }
+  },
   "tags": ["game", "react", "vite", "vitest", "phaser"]
 }
