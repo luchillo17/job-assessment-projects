@@ -1,27 +1,24 @@
-import Phaser from 'phaser';
-
 import { constants } from './constants';
 
-export class GameOverScene extends Phaser.Scene {
+import Phaser from 'phaser';
+
+export class MenuScene extends Phaser.Scene {
   constructor() {
-    super(GameOverScene.name);
+    super(constants.sceneNames.MenuScene);
   }
 
-  create(data: { score: number }) {
-    this.add.text(400, 250, 'Game Over', constants.textStyles).setOrigin(0.5);
-
+  create() {
     this.add
-      .text(400, 300, `Score: ${data.score}`, constants.textStyles)
-      .setOrigin(0.5);
-
-    this.add
-      .text(400, 350, 'Press SPACE to Restart', constants.textStyles)
+      .text(400, 300, 'Press SPACE to Start', {
+        fontSize: '32px',
+        color: '#fff',
+      })
       .setOrigin(0.5);
 
     this.input.keyboard?.once(
       'keydown-SPACE',
       () => {
-        this.scene.start('GameScene');
+        this.scene.start(constants.sceneNames.GameScene);
       },
       this
     );
@@ -40,17 +37,13 @@ if (import.meta.vitest) {
     vi: { waitFor },
   } = import.meta.vitest;
 
-  describe('GameOverScene', () => {
+  describe('MenuScene', () => {
     let game: Phaser.Game;
 
     beforeEach(async () => {
       game = new Phaser.Game({
-        type: Phaser.HEADLESS,
-        parent: 'asteroid-game',
-        scene: GameOverScene,
-        physics: {
-          default: 'arcade',
-        },
+        ...constants.gameConfig,
+        scene: MenuScene,
       });
 
       await waitFor(() => {

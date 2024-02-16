@@ -1,13 +1,15 @@
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
-import { gameConfig } from '../game/game';
+
+import { phaserConfig } from '../game/phaser-game';
 
 /* eslint-disable-next-line */
 export interface GameWrapperProps {}
 
 export function GameWrapper(props: GameWrapperProps) {
   useEffect(() => {
-    const game = new Phaser.Game(gameConfig);
+    const game = new Phaser.Game(phaserConfig);
+
     return () => {
       game.destroy(true);
     };
