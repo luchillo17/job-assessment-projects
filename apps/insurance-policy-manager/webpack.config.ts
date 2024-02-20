@@ -1,7 +1,7 @@
-const { NxWebpackPlugin } = require('@nx/webpack');
-const { join } = require('path');
+import { NxWebpackPlugin } from '@nx/webpack';
+import { join } from 'path';
 
-module.exports = {
+export default {
   output: {
     path: join(__dirname, '../../dist/apps/insurance-policy-manager'),
   },
