@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import { applyUserConstraints } from '../models/user.model';
+import { applyUserConstraints } from '../models/user.model.ts';
 
 const options = {};
 

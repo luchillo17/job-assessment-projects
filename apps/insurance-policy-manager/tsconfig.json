@@ -11,13 +11,16 @@
     }
   ],
   "compilerOptions": {
-    "module": "ESNext",
+    "target": "ESNext",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "esModuleInterop": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true
   },
   "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
+    "esm": true,
+    "compilerOptions": {}
   }
 }

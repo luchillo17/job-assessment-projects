@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
+import { RequestHandler } from 'express';
+import { MongoServerError } from 'mongodb';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 
-import { mongoClientPromise } from './db.config';
-import { User } from '../models/user.model';
-import { MongoServerError } from 'mongodb';
-import { RequestHandler } from 'express';
+import { User } from '../models/user.model.ts';
+import { mongoClientPromise } from './db.config.ts';
 
 const signupStrategy = new LocalStrategy(async function verify(
   username,

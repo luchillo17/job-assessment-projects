@@ -1,0 +1,10 @@
+{
+  "name": "insurance-policy-manager",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "main.ts",
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}

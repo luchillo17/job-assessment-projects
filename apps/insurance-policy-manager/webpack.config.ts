@@ -1,9 +1,13 @@
 import { NxWebpackPlugin } from '@nx/webpack';
-import { join } from 'path';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 export default {
   output: {
-    path: join(__dirname, '../../dist/apps/insurance-policy-manager'),
+    path: join(
+      dirname(fileURLToPath(import.meta.url)),
+      '../../dist/apps/insurance-policy-manager'
+    ),
   },
   plugins: [
     new NxWebpackPlugin({

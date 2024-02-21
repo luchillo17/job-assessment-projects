@@ -13,8 +13,8 @@ import passport from 'passport';
 import * as path from 'path';
 import { ZodError } from 'zod';
 
-import { authRouter } from './routes/auth.route';
-import { InsurancePolicyRouter } from './routes/insurance-policy.route';
+import { authRouter } from './routes/auth.route.ts';
+import { InsurancePolicyRouter } from './routes/insurance-policy.route.ts';
 
 const host = process.env.HOST ?? 'localhost';
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
